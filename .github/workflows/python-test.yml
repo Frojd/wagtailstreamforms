@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2 
         with:
           python-version: 3.8
       - name: Install dependencies
@@ -22,27 +22,17 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
+        python-version: ["3.11"] 
         tox_env:
           - py311-dj41-wt41
           - py311-dj41-wt50
           - py311-dj41-wt51
           - py311-dj41-wt52
           - py311-dj41-wt60
-        include:
-          - python-version: "3.11"
-            tox_env: py311-dj41-wt41
-          - python-version: "3.11"
-            tox_env: py311-dj41-wt50
-          - python-version: "3.11"
-            tox_env: py311-dj41-wt51
-          - python-version: "3.11"
-            tox_env: py311-dj41-wt52
-          - python-version: "3.11"
-            tox_env: py311-dj41-wt60
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2 
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -53,7 +43,7 @@ jobs:
         run: tox -e ${{ matrix.tox_env }} -- index-url=https://pypi.python.org/simple/
       - name: Prepare artifacts
         run: mkdir -p .coverage-data && mv .coverage.* .coverage-data/
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v3 #
         with:
           name: coverage-data
           path: .coverage-data/
@@ -63,12 +53,12 @@ jobs:
     needs: [test]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v3 
         with:
           name: coverage-data
           path: .
       - name: Set up Python 3.8
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2 
         with:
           python-version: 3.8
       - name: Install dependencies
@@ -78,4 +68,4 @@ jobs:
       - name: Prepare Coverage report
         run: tox -e coverage-report
       - name: Upload to codecov
-        uses: codecov/codecov-action@v1.0.6
+        uses: codecov/codecov-action@v2
