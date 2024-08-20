@@ -41,6 +41,7 @@ jobs:
           - py311-dj41-wt50
           - py311-dj41-wt51
           - py311-dj41-wt52
+          - py311-dj41-wt60
         include:
           - python-version: 3.8
             tox_env: py38-dj32-wt41
