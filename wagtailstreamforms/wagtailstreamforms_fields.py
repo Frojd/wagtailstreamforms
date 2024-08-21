@@ -225,9 +225,8 @@ class MultiFileInput(ClearableFileInput):
 
 
 class MultiFileField(BaseField):
-    widget = MultiFileInput()
     field_class = forms.FileField
-    widget = forms.widgets.FileInput(attrs={"multiple": True})
+    widget = MultiFileInput()
     icon = "doc-full-inverse"
     label = _("Files field")
 
