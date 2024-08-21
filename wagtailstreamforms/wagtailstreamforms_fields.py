@@ -4,6 +4,8 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
 
+from django.forms.widgets import ClearableFileInput
+
 from wagtailstreamforms.conf import get_setting
 from wagtailstreamforms.fields import BaseField, register
 
@@ -212,7 +214,18 @@ class SingleFileField(BaseField):
         )
 
 
+class MultiFileInput(ClearableFileInput):
+    input_type = 'file'
+    template_name = 'django/forms/widgets/multifileinput.html'
+
+    def __init__(self, attrs=None, *args, **kwargs):
+        attrs = attrs or {}
+        attrs.update({'multiple': True})
+        super().__init__(attrs, *args, **kwargs)
+
+
 class MultiFileField(BaseField):
+    widget = MultiFileInput()
     field_class = forms.FileField
     widget = forms.widgets.FileInput(attrs={"multiple": True})
     icon = "doc-full-inverse"
