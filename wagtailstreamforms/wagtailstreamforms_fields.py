@@ -224,9 +224,21 @@ class MultiFileInput(ClearableFileInput):
         super().__init__(attrs, *args, **kwargs)
 
 
-class MultiFileField(BaseField):
-    field_class = forms.FileField
-    widget = MultiFileInput()
+class MultiFileField(forms.FileField):
+    widget = MultiFileInput
+
+    def clean(self, data, initial=None):
+        if not data:
+            return None
+        if not isinstance(data, list):
+            data = [data]
+        for file in data:
+            super().clean(file, initial)
+        return data
+
+
+class WagtailMultiFileField(BaseField):
+    field_class = MultiFileField
     icon = "doc-full-inverse"
     label = _("Files field")
 
