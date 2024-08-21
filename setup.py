@@ -9,8 +9,6 @@ from wagtailstreamforms import __version__
 
 tests_require = [
     "mock==4.0.2",
-    "pytest-django==4.7.0",
-    "pytest==7.3.2",
     # Linting
     "isort[pyproject]==4.3.21",
     "flake8==3.7.9",
@@ -20,7 +18,7 @@ tests_require = [
 
 
 install_requires = [
-    "wagtail>=4.1,<6.1.3",
+    "wagtail>=4.1,<5.3",
     "Unidecode>=0.04.14,<2.0",
     "wagtail-generic-chooser>=0.5.0,<0.6",
 ]
