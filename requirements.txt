@@ -1,9 +1,10 @@
 # The app itself
 -e .
 
-Django>=4.2
+Django>=5.0
 mock
 psycopg2-binary
+wagtail-modeladmin
 
 # example site
 django-recaptcha
