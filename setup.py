@@ -19,7 +19,7 @@ tests_require = [
 
 install_requires = [
     "wagtail-modeladmin",
-    "wagtail>=5.2,<6.2",
+    "wagtail>=5.2,<6.3",
     "Unidecode>=0.04.14,<2.0",
     "wagtail-generic-chooser>=0.5.0,<0.6",
 ]
