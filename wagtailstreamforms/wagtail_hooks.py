@@ -5,7 +5,7 @@ from django.template.response import TemplateResponse
 from django.urls import include, path, reverse
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.viewsets.chooser import ChooserViewSet
-from wagtail.admin.widgets.chooser import AdminChooser
+from wagtail.admin.widgets.chooser import BaseChooser
 from wagtail.admin import messages as wagtail_messages
 from wagtail_modeladmin.helpers import AdminURLHelper, ButtonHelper
 from wagtail_modeladmin.options import ModelAdmin, modeladmin_register
@@ -238,7 +238,7 @@ class WagtailStreamFormsChooserViewSet(ChooserViewSet):
     per_page = 10
 
 
-class WagtailStreamFormsChooser(AdminChooser):
+class WagtailStreamFormsChooser(BaseChooser):
     choose_one_text = _("Choose a form")
     choose_another_text = _("Choose another form")
     link_to_chosen_text = _("Edit this form")
