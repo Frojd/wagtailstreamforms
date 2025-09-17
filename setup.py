@@ -21,7 +21,7 @@ install_requires = [
     "wagtail-modeladmin",
     "wagtail>=5.2,<7.2",
     "Unidecode>=0.04.14,<2.0",
-    "wagtail-generic-chooser>=0.5.0,<0.7",
+    "wagtail-generic-chooser>=0.5.0,<0.8",
 ],
 
 documentation_extras = [
